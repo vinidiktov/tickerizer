@@ -14,7 +14,6 @@ class AddTicker < ActiveRecord::Migration[6.0]
       t.float     :price
       t.timestamp :last_fetch_at
 
-
       t.timestamps
     end
   end

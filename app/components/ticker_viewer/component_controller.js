@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-    static targets = [ "change" ]
+    static targets = ["change"]
 
     connect() {
         console.log("ticker controller")

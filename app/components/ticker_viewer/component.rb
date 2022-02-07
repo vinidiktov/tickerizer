@@ -4,26 +4,27 @@ module TickerViewer
 
     def initialize(ticker:)
       @ticker = ticker
+
+      super
     end
 
     def change_color
       value = ticker.change
-      if value < 0
-        return 'red'
+      if value.negative?
+        'red'
       else
-        return 'green'
+        'green'
       end
     end
 
     # negative numbers have a - sign but positive ones don't
     def change_value(attribute)
       value = ticker.send(attribute)
-      if value > 0
-        return "+#{value}"
+      if value.positive?
+        "+#{value}"
       else
-        return value
+        value
       end
     end
-
   end
 end

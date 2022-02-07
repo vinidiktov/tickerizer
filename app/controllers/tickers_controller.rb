@@ -1,13 +1,12 @@
 class TickersController < ApplicationController
-  before_action :set_ticker, only: [:show, :destroy]
+  before_action :set_ticker, only: %i[show destroy]
 
   def index
     @tickers = ::Ticker.all
     @has_token = $vantage_api_key.present?
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @ticker = ::Ticker.new
@@ -20,7 +19,7 @@ class TickersController < ApplicationController
       # but I'm using this as an example to show different ways
       render turbo_stream: turbo_stream.replace('tickers', partial: 'index', locals: { tickers: ::Ticker.all })
     else
-      render turbo_stream: turbo_stream.replace('new_ticker', partial: 'form', locals: { ticker: @ticker } )
+      render turbo_stream: turbo_stream.replace('new_ticker', partial: 'form', locals: { ticker: @ticker })
     end
   end
 
@@ -39,5 +38,4 @@ class TickersController < ApplicationController
   def valid_params
     params.required(:ticker).permit(:symbol)
   end
-
 end
