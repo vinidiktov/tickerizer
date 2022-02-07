@@ -32,7 +32,7 @@ class Ticker < ApplicationRecord
   private
 
   def client
-    @client ||= ::Alphavantage::Client.new key: Rails.application.credentials.alpha_vantage[:api_key]
+    @client ||= ::Alphavantage::Client.new(key: $vantage_api_key)
   end
 
   def fetch_it

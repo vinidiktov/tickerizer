@@ -3,7 +3,7 @@ class TickersController < ApplicationController
 
   def index
     @tickers = ::Ticker.all
-    @has_token = Rails.application.credentials.alpha_vantage.present? && Rails.application.credentials.alpha_vantage[:api_key].present?
+    @has_token = $vantage_api_key.present?
   end
 
   def show
