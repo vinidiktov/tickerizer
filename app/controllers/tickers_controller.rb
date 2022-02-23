@@ -3,7 +3,13 @@ class TickersController < ApplicationController
 
   def index
     @tickers = ::Ticker.all
-    @has_token = $vantage_api_key.present?
+    @show_tickers = $real_data || params[:proceed] || !@tickers.empty?
+
+    # generate some random tickers to show if process is present
+    if params[:proceed] && @tickers.empty?
+      ::Ticker.generate_random
+      @tickers = ::Ticker.all
+    end
   end
 
   def show; end
